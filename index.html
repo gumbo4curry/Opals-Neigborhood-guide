@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<!-- saved from url=(0066)file:///C:/Users/concierge/Downloads/clearwater-beach-guide_3.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clearwater Beach — A Curated Neighborhood Guide</title>
+<link href="./index_files/css2" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --parchment: #F0E8D8;
+    --cream: #FFFDF8;
+    --warm-dark: #2C2418;
+    --text-body: #5A4E3E;
+    --text-muted: #9B8E7E;
+    --text-faint: #B8A898;
+    --text-ghost: #C4B8A8;
+    --border: #D4C5AD;
+    --border-light: #E8E0D4;
+    --strip-bg: #E8DDD0;
+    --dark-bg: #1a1714;
+    --gold: #C8A96E;
+    --coffee: #C8553D;
+    --gems: #2A6041;
+    --fishing: #1B4965;
+  }
+
+  body {
+    font-family: 'Source Serif 4', serif;
+    background: var(--parchment);
+    color: var(--text-body);
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* grain overlay */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    opacity: 0.03;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    z-index: 9999;
+  }
+
+  .mono { font-family: 'DM Mono', monospace; }
+  .serif { font-family: 'Playfair Display', serif; }
+  .body-serif { font-family: 'Source Serif 4', serif; }
+
+  /* ═══ ARCHIVAL PHOTO ═══ */
+  .archival-photo {
+    position: relative;
+    overflow: hidden;
+    background: var(--dark-bg);
+  }
+  .archival-photo__frame {
+    position: relative;
+    overflow: hidden;
+  }
+  .archival-photo__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(100%) contrast(1.1) brightness(0.95);
+    opacity: 0;
+    transition: opacity 0.8s ease;
+  }
+  .archival-photo__img.loaded { opacity: 1; }
+  .archival-photo__grain {
+    position: absolute;
+    inset: 0;
+    mix-blend-mode: overlay;
+    opacity: 0.06;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .archival-photo__vignette {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    box-shadow: inset 0 0 80px rgba(0,0,0,0.4);
+  }
+  .archival-photo__caption {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 7px 12px;
+    background: var(--dark-bg);
+  }
+  .archival-photo__caption-text {
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    color: #8B7D6B;
+    text-transform: uppercase;
+  }
+  .archival-photo__caption-year {
+    font-size: 9px;
+    letter-spacing: 1px;
+    color: #5A4E3E;
+  }
+
+  /* skeleton */
+  .archival-photo__skeleton {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(110deg, #2a2520 30%, #3a3530 50%, #2a2520 70%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+  .archival-photo__img.loaded + .archival-photo__grain + .archival-photo__vignette + .archival-photo__skeleton,
+  .loaded ~ .archival-photo__skeleton { display: none; }
+
+  @keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+
+  /* ═══ HERO ═══ */
+  .hero { position: relative; overflow: hidden; }
+  .hero__frame {
+    position: relative;
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    background: var(--dark-bg);
+  }
+  .hero__img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    filter: grayscale(100%) contrast(1.15) brightness(0.9);
+  }
+  .hero__gradient {
+    position: absolute; inset: 0;
+    pointer-events: none;
+    background: linear-gradient(180deg, rgba(0,0,0,0.15) 0%, transparent 35%, transparent 50%, rgba(0,0,0,0.65) 100%);
+  }
+  .hero__vignette {
+    position: absolute; inset: 0;
+    pointer-events: none;
+    box-shadow: inset 0 0 100px rgba(0,0,0,0.5);
+  }
+  .hero__grain {
+    position: absolute; inset: 0;
+    mix-blend-mode: overlay;
+    opacity: 0.08;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .hero__overlay {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 0 28px 24px;
+  }
+  .hero__content { max-width: 640px; margin: 0 auto; width: 100%; }
+  .hero__subtitle {
+    font-size: 9px; letter-spacing: 4px;
+    color: rgba(255,253,248,0.5);
+    margin-bottom: 4px;
+    opacity: 0; animation: fadeIn 0.8s 0.3s forwards;
+  }
+  .hero__title {
+    font-size: clamp(34px, 8vw, 52px);
+    font-weight: 900;
+    color: #FFFDF8;
+    line-height: 1.0;
+    text-shadow: 0 2px 30px rgba(0,0,0,0.5);
+    margin: 0 0 4px;
+    opacity: 0; transform: translateY(15px);
+    animation: slideUp 1s 0.4s forwards;
+  }
+  .hero__rule {
+    width: 40px; height: 2px;
+    background: rgba(255,253,248,0.35);
+    margin-bottom: 8px;
+    opacity: 0; animation: fadeIn 0.8s 0.6s forwards;
+  }
+  .hero__desc {
+    font-size: 14px;
+    color: rgba(255,253,248,0.6);
+    line-height: 1.5;
+    max-width: 320px;
+    opacity: 0; animation: fadeIn 0.8s 0.7s forwards;
+  }
+  .hero__credit {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 7px 12px; background: var(--dark-bg);
+  }
+
+  @keyframes fadeIn { to { opacity: 1; } }
+  @keyframes slideUp { to { opacity: 1; transform: translateY(0); } }
+
+  /* ═══ ARCHIVE STRIP ═══ */
+  .archive-strip {
+    background: var(--strip-bg);
+    padding: 14px 24px;
+    border-bottom: 1px solid var(--border);
+  }
+  .archive-strip__inner { max-width: 640px; margin: 0 auto; }
+  .archive-strip__header {
+    display: flex; align-items: center; gap: 8px; margin-bottom: 6px;
+  }
+  .archive-strip__line { height: 1px; background: var(--text-faint); }
+  .archive-strip__line--short { width: 20px; }
+  .archive-strip__line--fill { flex: 1; }
+
+  /* ═══ TABS ═══ */
+  .tabs {
+    position: sticky; top: 0; z-index: 100;
+    background: var(--parchment);
+    border-bottom: 1px solid var(--border);
+  }
+  .tabs__inner { max-width: 640px; margin: 0 auto; display: flex; }
+  .tabs__btn {
+    flex: 1; padding: 14px 8px;
+    border: none; background: transparent; cursor: pointer;
+    font-size: 10px; letter-spacing: 1.5px;
+    color: var(--text-muted);
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s;
+    display: flex; align-items: center; justify-content: center; gap: 5px;
+  }
+  .tabs__btn:hover { color: var(--text-body); }
+  .tabs__btn.active { font-weight: 600; }
+  .tabs__btn .icon { font-size: 14px; }
+
+  /* ═══ CONTENT ═══ */
+  .content { max-width: 640px; margin: 0 auto; padding: 24px 24px 60px; }
+
+  .section-photo {
+    margin-bottom: 24px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+  }
+
+  .section-header { margin-bottom: 20px; }
+  .section-header__top { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
+  .section-header__icon { font-size: 22px; }
+  .section-header__title { font-size: 26px; font-weight: 700; color: var(--warm-dark); }
+  .section-header__desc { font-size: 13.5px; color: var(--text-muted); line-height: 1.5; margin-top: 2px; }
+
+  /* ═══ PLACE CARD ═══ */
+  .cards { display: flex; flex-direction: column; gap: 14px; }
+
+  .card {
+    background: var(--cream);
+    border-radius: 2px;
+    border: 1px solid var(--border-light);
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    overflow: hidden;
+    opacity: 0; transform: translateY(30px);
+  }
+  .card.visible {
+    opacity: 1; transform: translateY(0);
+  }
+  .card.expanded { box-shadow: 0 8px 32px rgba(0,0,0,0.1); }
+  .card__accent { height: 3px; opacity: 0.8; }
+  .card__body { padding: 18px 22px; }
+  .card__top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px; }
+  .card__meta { display: flex; align-items: center; gap: 10px; margin-bottom: 5px; }
+  .card__tag {
+    font-size: 9px; letter-spacing: 2px;
+    color: var(--cream); padding: 2px 8px;
+    border-radius: 1px; font-weight: 500;
+  }
+  .card__price { font-size: 11px; color: var(--text-muted); }
+  .card__name { font-size: 19px; font-weight: 700; color: var(--warm-dark); line-height: 1.2; }
+  .card__number { font-size: 26px; font-weight: 700; opacity: 0.12; line-height: 1; }
+  .card__address { font-size: 10.5px; color: var(--text-muted); margin-bottom: 6px; letter-spacing: 0.5px; }
+  .card__rating { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+  .card__stars { letter-spacing: 1px; font-size: 13px; color: var(--gold); }
+  .card__stars-dim { opacity: 0.2; }
+  .card__rating-num { font-size: 12px; opacity: 0.7; color: var(--text-muted); }
+  .card__reviews { font-size: 10.5px; color: var(--text-faint); }
+  .card__vibe { font-size: 14px; line-height: 1.6; color: var(--text-body); }
+
+  .card__expand {
+    max-height: 0; overflow: hidden;
+    transition: max-height 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  .card.expanded .card__expand { max-height: 200px; }
+  .card__expand-inner {
+    margin-top: 14px; padding-top: 14px;
+    border-top: 1px dashed var(--border-light);
+  }
+  .card__tip {
+    border-radius: 2px;
+    padding: 10px 14px;
+    margin-bottom: 10px;
+  }
+  .card__tip-label { font-size: 9px; letter-spacing: 2px; font-weight: 600; }
+  .card__tip-text { font-size: 13px; color: var(--text-body); margin-top: 3px; line-height: 1.5; }
+  .card__hours { display: flex; align-items: center; gap: 6px; }
+  .card__hours-icon { font-size: 12px; }
+  .card__hours-text { font-size: 10.5px; color: var(--text-muted); }
+  .card__toggle {
+    text-align: center; margin-top: 8px;
+    font-size: 9px; letter-spacing: 2px; color: var(--text-ghost);
+  }
+
+  /* ═══ GALLERY ═══ */
+  .gallery {
+    margin-top: 40px; padding-top: 24px;
+    border-top: 1px solid var(--border);
+  }
+  .gallery__header {
+    display: flex; align-items: center; gap: 8px; margin-bottom: 16px;
+  }
+  .gallery__grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+  }
+  .gallery__item {
+    border: 1px solid var(--border); overflow: hidden;
+  }
+  .gallery__credit {
+    font-size: 11px; color: var(--text-faint);
+    margin-top: 12px; line-height: 1.5;
+    font-style: italic; text-align: center;
+  }
+
+  /* ═══ FOOTER ═══ */
+  .footer {
+    margin-top: 32px; padding-top: 20px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+  }
+  .footer__title { font-size: 9px; letter-spacing: 2px; color: var(--text-faint); margin-bottom: 3px; }
+  .footer__subtitle { font-size: 11.5px; color: var(--text-faint); }
+  .footer__counts {
+    margin-top: 12px;
+    display: flex; justify-content: center; gap: 14px; flex-wrap: wrap;
+  }
+  .footer__count { font-size: 9px; letter-spacing: 1px; color: var(--text-faint); }
+</style>
+</head>
+<body>
+
+<!-- ═══ HERO ═══ -->
+<div class="hero">
+  <div class="hero__frame">
+    <img class="hero__img" src="./index_files/c018866.webp" alt="Pier and yacht basin at Clearwater, 1954">
+    <div class="hero__grain"></div>
+    <div class="hero__vignette"></div>
+    <div class="hero__gradient"></div>
+    <div class="hero__overlay">
+      <div class="hero__content">
+        <div class="hero__subtitle mono">A CURATED NEIGHBORHOOD GUIDE</div>
+        <h1 class="hero__title serif">Clearwater<br>Beach</h1>
+        <div class="hero__rule"></div>
+        <p class="hero__desc body-serif">The spots locals actually go to — brewed, grilled, and reeled in by the Gulf.</p>
+      </div>
+    </div>
+  </div>
+  <div class="hero__credit">
+    <span class="mono" style="font-size:9px;letter-spacing:1.5px;color:#5A4E3E;text-transform:uppercase">Pier &amp; Yacht Basin, Clearwater</span>
+    <span class="mono" style="font-size:9px;letter-spacing:1px;color:#3A352E">1954 · FL STATE ARCHIVES</span>
+  </div>
+</div>
+
+<!-- ═══ ARCHIVE STRIP ═══ -->
+<div class="archive-strip">
+  <div class="archive-strip__inner">
+    <div class="archive-strip__header">
+      <div class="archive-strip__line archive-strip__line--short"></div>
+      <span class="mono" style="font-size:9px;letter-spacing:3px;color:var(--text-muted)">FROM THE ARCHIVES</span>
+      <div class="archive-strip__line archive-strip__line--fill"></div>
+    </div>
+    <p class="body-serif" style="font-size:12.5px;color:#8B7D6B;line-height:1.5;font-style:italic">
+      Photographs courtesy of the State Archives of Florida, Florida Memory collection — documenting Clearwater Beach from the 1940s through the 1960s.
+    </p>
+  </div>
+</div>
+
+<!-- ═══ TABS ═══ -->
+<div class="tabs">
+  <div class="tabs__inner">
+    <button class="tabs__btn mono active" data-tab="coffee" style="color: rgb(200, 85, 61); border-bottom-color: rgb(200, 85, 61); font-weight: 600;">
+      <span class="icon">☕</span> COFFEE
+    </button>
+    <button class="tabs__btn mono" data-tab="gems" style="border-bottom-color: transparent; font-weight: 400;">
+      <span class="icon">✦</span> HIDDEN GEMS
+    </button>
+    <button class="tabs__btn mono" data-tab="fishing" style="border-bottom-color: transparent; font-weight: 400;">
+      <span class="icon">🎣</span> FISHING
+    </button>
+  </div>
+</div>
+
+<!-- ═══ CONTENT ═══ -->
+<div class="content">
+  <div class="section-photo" id="section-photo"><div class="archival-photo">
+    <div class="archival-photo__frame" style="aspect-ratio:16/10">
+      <img class="archival-photo__img loaded" src="./index_files/c027084.webp" alt="Beach Scene, Clearwater" onload="this.classList.add(&#39;loaded&#39;)">
+      <div class="archival-photo__grain"></div>
+      <div class="archival-photo__vignette"></div>
+      <div class="archival-photo__skeleton"></div>
+    </div>
+    <div class="archival-photo__caption">
+      <span class="archival-photo__caption-text mono">Beach Scene, Clearwater</span>
+      <span class="archival-photo__caption-year mono">1958 · FL STATE ARCHIVES</span>
+    </div>
+  </div></div>
+  <div class="section-header" id="section-header">
+    <div class="section-header__top">
+      <span class="section-header__icon">☕</span>
+      <h2 class="section-header__title serif">Morning Fuel</h2>
+    </div>
+    <p class="section-header__desc body-serif">Where the locals get their caffeine fix before the tourists wake up.</p></div>
+  <div class="cards" id="cards"><div class="card visible" data-index="0" style="transition-delay:0s">
+    <div class="card__accent" style="background:#C8553D"></div>
+    <div class="card__body">
+      <div class="card__top">
+        <div style="flex:1">
+          <div class="card__meta">
+            <span class="card__tag mono" style="background:#C8553D">ISLAND ROAST</span>
+            <span class="card__price mono">$</span>
+          </div>
+          <h3 class="card__name serif">Bad Ass Coffee of Hawaii</h3>
+        </div>
+        <div class="card__number mono" style="color:#C8553D">01</div>
+      </div>
+      <p class="card__address mono">505 S Gulfview Blvd</p>
+      <div class="card__rating"><span class="card__stars">★★★★½<span class="card__stars-dim"></span></span>
+          <span class="card__rating-num mono">4.6</span><span class="card__reviews mono">(154)</span></div>
+      <p class="card__vibe body-serif">Island roast vibes with creative flavors like Coconut Rum and Coffee Bun. Bold drinks, bold name.</p>
+      <div class="card__expand">
+        <div class="card__expand-inner">
+          <div class="card__tip" style="background:#C8553D0D;border:1px solid #C8553D22">
+            <div class="card__tip-label mono" style="color:#C8553D">INSIDER TIP</div>
+            <p class="card__tip-text body-serif">Try the Dark Chocolate Mint — it's a sleeper hit.</p>
+          </div>
+          <div class="card__hours">
+            <span class="card__hours-icon">⏰</span>
+            <span class="card__hours-text mono">7 AM – 5 PM Daily</span>
+          </div>
+        </div>
+      </div>
+      <div class="card__toggle mono">TAP FOR MORE ▼</div>
+    </div>
+  </div><div class="card visible" data-index="1" style="transition-delay:0.08s">
+    <div class="card__accent" style="background:#C8553D"></div>
+    <div class="card__body">
+      <div class="card__top">
+        <div style="flex:1">
+          <div class="card__meta">
+            <span class="card__tag mono" style="background:#C8553D">CRAFT DOUGHNUTS</span>
+            <span class="card__price mono">$</span>
+          </div>
+          <h3 class="card__name serif">Parlor Doughnuts</h3>
+        </div>
+        <div class="card__number mono" style="color:#C8553D">02</div>
+      </div>
+      <p class="card__address mono">521 S Gulfview Blvd, Unit 2</p>
+      <div class="card__rating"><span class="card__stars">★★★★½<span class="card__stars-dim"></span></span>
+          <span class="card__rating-num mono">4.5</span><span class="card__reviews mono">(130)</span></div>
+      <p class="card__vibe body-serif">Craft layered doughnuts made fresh all day — flaky, airy, and nothing like a regular donut. French Toast and Churro are top-tier. Great specialty coffee too.</p>
+      <div class="card__expand">
+        <div class="card__expand-inner">
+          <div class="card__tip" style="background:#C8553D0D;border:1px solid #C8553D22">
+            <div class="card__tip-label mono" style="color:#C8553D">INSIDER TIP</div>
+            <p class="card__tip-text body-serif">Get there early for the full flavor lineup — the Strawberry Shortcake sells out fast.</p>
+          </div>
+          <div class="card__hours">
+            <span class="card__hours-icon">⏰</span>
+            <span class="card__hours-text mono">6 AM – 3 PM Daily</span>
+          </div>
+        </div>
+      </div>
+      <div class="card__toggle mono">TAP FOR MORE ▼</div>
+    </div>
+  </div><div class="card visible" data-index="2" style="transition-delay:0.16s">
+    <div class="card__accent" style="background:#C8553D"></div>
+    <div class="card__body">
+      <div class="card__top">
+        <div style="flex:1">
+          <div class="card__meta">
+            <span class="card__tag mono" style="background:#C8553D">BEST COLD BREW</span>
+            <span class="card__price mono">$</span>
+          </div>
+          <h3 class="card__name serif">Blessed Cup</h3>
+        </div>
+        <div class="card__number mono" style="color:#C8553D">03</div>
+      </div>
+      <p class="card__address mono">483 Mandalay Ave, Upstairs</p>
+      <div class="card__rating"><span class="card__stars">★★★★½<span class="card__stars-dim"></span></span>
+          <span class="card__rating-num mono">4.6</span><span class="card__reviews mono">(483)</span></div>
+      <p class="card__vibe body-serif">Locally roasted cold brew that regulars swear is the best in the Bay. Cozy upstairs hideaway with Horchata lattes.</p>
+      <div class="card__expand">
+        <div class="card__expand-inner">
+          <div class="card__tip" style="background:#C8553D0D;border:1px solid #C8553D22">
+            <div class="card__tip-label mono" style="color:#C8553D">INSIDER TIP</div>
+            <p class="card__tip-text body-serif">The Horchata Latte is legendary — don't skip it.</p>
+          </div>
+          <div class="card__hours">
+            <span class="card__hours-icon">⏰</span>
+            <span class="card__hours-text mono">8 AM – 2 PM (Closed Sun)</span>
+          </div>
+        </div>
+      </div>
+      <div class="card__toggle mono">TAP FOR MORE ▼</div>
+    </div>
+  </div><div class="card visible" data-index="3" style="transition-delay:0.24s">
+    <div class="card__accent" style="background:#C8553D"></div>
+    <div class="card__body">
+      <div class="card__top">
+        <div style="flex:1">
+          <div class="card__meta">
+            <span class="card__tag mono" style="background:#C8553D">HIDDEN GEM</span>
+            <span class="card__price mono">$</span>
+          </div>
+          <h3 class="card__name serif">Beach Cafe</h3>
+        </div>
+        <div class="card__number mono" style="color:#C8553D">04</div>
+      </div>
+      <p class="card__address mono">483 Mandalay Ave #101</p>
+      <div class="card__rating"><span class="card__stars">★★★★<span class="card__stars-dim">★</span></span>
+          <span class="card__rating-num mono">4.1</span><span class="card__reviews mono">(14)</span></div>
+      <p class="card__vibe body-serif">Second-floor secret below the Hulk Hogan shop. Power smoothies, avocado toast on sourdough, and zero pretension.</p>
+      <div class="card__expand">
+        <div class="card__expand-inner">
+          <div class="card__tip" style="background:#C8553D0D;border:1px solid #C8553D22">
+            <div class="card__tip-label mono" style="color:#C8553D">INSIDER TIP</div>
+            <p class="card__tip-text body-serif">Power smoothie with espresso + peanut butter is fuel for the beach.</p>
+          </div>
+          <div class="card__hours">
+            <span class="card__hours-icon">⏰</span>
+            <span class="card__hours-text mono">Morning hours</span>
+          </div>
+        </div>
+      </div>
+      <div class="card__toggle mono">TAP FOR MORE ▼</div>
+    </div>
+  </div></div>
+
+  <!-- ═══ GALLERY ═══ -->
+  <div class="gallery">
+    <div class="gallery__header">
+      <div class="archive-strip__line archive-strip__line--short"></div>
+      <span class="mono" style="font-size:9px;letter-spacing:3px;color:var(--text-muted)">CLEARWATER THROUGH THE DECADES</span>
+      <div class="archive-strip__line archive-strip__line--fill"></div>
+    </div>
+    <div class="gallery__grid" id="gallery-grid"><div class="gallery__item"><div class="archival-photo">
+    <div class="archival-photo__frame" style="aspect-ratio:4/3">
+      <img class="archival-photo__img loaded" src="./index_files/c012079.webp" alt="Beach Scene" onload="this.classList.add(&#39;loaded&#39;)">
+      <div class="archival-photo__grain"></div>
+      <div class="archival-photo__vignette"></div>
+      <div class="archival-photo__skeleton"></div>
+    </div>
+    <div class="archival-photo__caption">
+      <span class="archival-photo__caption-text mono">Beach Scene</span>
+      <span class="archival-photo__caption-year mono">1949</span>
+    </div>
+  </div></div><div class="gallery__item"><div class="archival-photo">
+    <div class="archival-photo__frame" style="aspect-ratio:4/3">
+      <img class="archival-photo__img loaded" src="./index_files/c027095.webp" alt="Palms on the Beach" onload="this.classList.add(&#39;loaded&#39;)">
+      <div class="archival-photo__grain"></div>
+      <div class="archival-photo__vignette"></div>
+      <div class="archival-photo__skeleton"></div>
+    </div>
+    <div class="archival-photo__caption">
+      <span class="archival-photo__caption-text mono">Palms on the Beach</span>
+      <span class="archival-photo__caption-year mono">1958</span>
+    </div>
+  </div></div><div class="gallery__item"><div class="archival-photo">
+    <div class="archival-photo__frame" style="aspect-ratio:4/3">
+      <img class="archival-photo__img loaded" src="./index_files/c640302.webp" alt="Memorial Causeway Bridge" onload="this.classList.add(&#39;loaded&#39;)">
+      <div class="archival-photo__grain"></div>
+      <div class="archival-photo__vignette"></div>
+      <div class="archival-photo__skeleton"></div>
+    </div>
+    <div class="archival-photo__caption">
+      <span class="archival-photo__caption-text mono">Memorial Causeway Bridge</span>
+      <span class="archival-photo__caption-year mono">1964</span>
+    </div>
+  </div></div><div class="gallery__item"><div class="archival-photo">
+    <div class="archival-photo__frame" style="aspect-ratio:4/3">
+      <img class="archival-photo__img loaded" src="./index_files/c650410.webp" alt="Little Pass Bridge" onload="this.classList.add(&#39;loaded&#39;)">
+      <div class="archival-photo__grain"></div>
+      <div class="archival-photo__vignette"></div>
+      <div class="archival-photo__skeleton"></div>
+    </div>
+    <div class="archival-photo__caption">
+      <span class="archival-photo__caption-text mono">Little Pass Bridge</span>
+      <span class="archival-photo__caption-year mono">1965</span>
+    </div>
+  </div></div></div>
+    <p class="gallery__credit body-serif">All photographs: State Archives of Florida, Florida Memory</p>
+  </div>
+
+  <!-- ═══ FOOTER ═══ -->
+  <div class="footer">
+    <p class="footer__title mono">CLEARWATER BEACH — FLORIDA'S GULF COAST</p>
+    <p class="footer__subtitle body-serif">Tap any card for insider tips &amp; hours</p>
+    <div class="footer__counts">
+      <span class="footer__count mono">☕ 4</span>
+      <span class="footer__count mono">✦ 4</span>
+      <span class="footer__count mono">🎣 4</span>
+      <span class="footer__count mono">— 12 SPOTS</span>
+    </div>
+  </div>
+</div>
+
+<script>
+const DATA = {
+  coffee: {
+    accent: '#C8553D', icon: '☕', title: 'Morning Fuel',
+    desc: 'Where the locals get their caffeine fix before the tourists wake up.',
+    photo: { src: 'https://i0.wp.com/www.cltampa.com/wp-content/uploads/2019/04/c027084.webp', caption: 'Beach Scene, Clearwater', year: '1958 · FL STATE ARCHIVES' },
+    places: [
+      { name: 'Bad Ass Coffee of Hawaii', address: '505 S Gulfview Blvd', rating: 4.6, reviews: 154, hours: '7 AM – 5 PM Daily', vibe: 'Island roast vibes with creative flavors like Coconut Rum and Coffee Bun. Bold drinks, bold name.', tip: "Try the Dark Chocolate Mint — it's a sleeper hit.", price: '$', tag: 'ISLAND ROAST' },
+      { name: 'Parlor Doughnuts', address: '521 S Gulfview Blvd, Unit 2', rating: 4.5, reviews: 130, hours: '6 AM – 3 PM Daily', vibe: "Craft layered doughnuts made fresh all day — flaky, airy, and nothing like a regular donut. French Toast and Churro are top-tier. Great specialty coffee too.", tip: "Get there early for the full flavor lineup — the Strawberry Shortcake sells out fast.", price: '$', tag: 'CRAFT DOUGHNUTS' },
+      { name: 'Blessed Cup', address: '483 Mandalay Ave, Upstairs', rating: 4.6, reviews: 483, hours: '8 AM – 2 PM (Closed Sun)', vibe: "Locally roasted cold brew that regulars swear is the best in the Bay. Cozy upstairs hideaway with Horchata lattes.", tip: "The Horchata Latte is legendary — don't skip it.", price: '$', tag: 'BEST COLD BREW' },
+      { name: 'Beach Cafe', address: '483 Mandalay Ave #101', rating: 4.1, reviews: 14, hours: 'Morning hours', vibe: 'Second-floor secret below the Hulk Hogan shop. Power smoothies, avocado toast on sourdough, and zero pretension.', tip: 'Power smoothie with espresso + peanut butter is fuel for the beach.', price: '$', tag: 'HIDDEN GEM' },
+    ]
+  },
+  gems: {
+    accent: '#2A6041', icon: '✦', title: 'Hidden Gems',
+    desc: "Restaurants and bars the guidebooks won't tell you about.",
+    photo: { src: 'https://i0.wp.com/www.cltampa.com/wp-content/uploads/2019/04/c630010.webp', caption: 'Beach Scene, Clearwater', year: '1963 · FL STATE ARCHIVES' },
+    places: [
+      { name: 'Bait House Tackle & Tavern', address: '45 Causeway Blvd', rating: 4.5, reviews: 931, hours: '11:30 AM – 9 PM Daily', vibe: "Walk through the tackle shop to a hidden open-air dock on the marina. A Clearwater institution since the 1940s — fresh catch daily, house-smoked fish spread, and the legendary Drunken Shrimp.", tip: "The Drunken Shrimp in bourbon creole reduction is a must — order it before anything else.", price: '$$', tag: 'SINCE THE 1940s' },
+      { name: 'The Deep End', address: '691 S Gulfview Blvd (JW Marriott)', rating: 4.6, reviews: 165, hours: '11 AM – 11 PM', vibe: 'Sky-high poolside dining atop the JW Marriott. Yellow Coconut Curry and smoky Palomas with panoramic Gulf views.', tip: 'Bring your swimsuit — you can hit the pool after dinner.', price: '$$$', tag: 'ROOFTOP VIBES' },
+      { name: "Hogg Daddy's Beach Bar", address: '752 S Gulfview Blvd', rating: 4.3, reviews: 272, hours: '11 AM – 1 AM (3 AM Fri–Sat)', vibe: 'Dive-bar energy meets legit food. Bourbon Chicken Bowl, homemade empanadas, and a Hogfish Sandwich that rivals Key West.', tip: "Challenge the owner's claim — his Hogfish Sandwich vs Key West. He might be right.", price: '$$', tag: 'LOCALS ONLY' },
+      { name: 'Ocean Seven', address: '385 S Gulfview Blvd', rating: 4.4, reviews: 252, hours: '7 AM – 10 PM Daily', vibe: "Wagyu, coconut shrimp crunch rolls, and the best crème brûlée you'll ever have. Beachfront fine dining.", tip: 'The complimentary sunset toast (sparkling rosé) is pure class.', price: '$$$', tag: 'SUNSET DINING' },
+    ]
+  },
+  fishing: {
+    accent: '#1B4965', icon: '🎣', title: 'Cast a Line',
+    desc: 'From legendary piers to secret docks — tight lines, Clearwater style.',
+    photo: { src: 'https://i0.wp.com/www.cltampa.com/wp-content/uploads/2019/04/c027121.webp', caption: 'Bridge Fishing, Clearwater', year: 'c. 1960 · FL STATE ARCHIVES' },
+    places: [
+      { name: 'Pier 60', address: '1 Causeway Blvd', rating: 4.7, reviews: 5541, hours: '8 AM – 10 PM Daily', vibe: 'The iconic Clearwater pier. Fish, watch sunsets, catch street performers, and soak in the magic hour.', tip: 'Friday markets with local vendors — arrive early for the best sunset spot.', price: 'Free', tag: 'ICONIC' },
+      { name: 'Memorial Causeway Pier', address: 'Clearwater Beach Causeway', rating: 3.9, reviews: 7, hours: 'Open 24/7', vibe: "No lights, no crowds, no nonsense. Just you and the trout under the stars. A true local's spot.", tip: 'No lights at night — bring a headlamp. Trout bite after dark.', price: 'Free', tag: 'AFTER DARK' },
+      { name: 'Magnolia St Fishing Dock', address: 'Magnolia St, Clearwater', rating: 4.7, reviews: 55, hours: '6 AM – 9 PM Daily', vibe: 'Old-school shaded pier where locals have fished for decades. Snapper, drum, sheepshead, and a resident Great Blue Heron.', tip: "Most people don't know this exists — keep it that way.", price: 'Free', tag: 'SECRET SPOT' },
+      { name: 'Downtown Waterfront Pier', address: 'Downtown Clearwater Marina', rating: 4.6, reviews: 15, hours: 'Dawn to Dusk', vibe: 'Part of the Clearwater Marina. Bird watching, boat traffic, and peaceful intracoastal sunsets.', tip: 'Best at golden hour — the marina lights up beautifully.', price: 'Free', tag: 'MARINA VIEW' },
+    ]
+  }
+};
+
+const GALLERY = [
+  { src: 'https://i0.wp.com/www.cltampa.com/wp-content/uploads/2019/04/c012079.webp', caption: 'Beach Scene', year: '1949' },
+  { src: 'https://i0.wp.com/www.cltampa.com/wp-content/uploads/2019/04/c027095.webp', caption: 'Palms on the Beach', year: '1958' },
+  { src: 'https://i0.wp.com/www.cltampa.com/wp-content/uploads/2019/04/c640302.webp', caption: 'Memorial Causeway Bridge', year: '1964' },
+  { src: 'https://i0.wp.com/www.cltampa.com/wp-content/uploads/2019/04/c650410.webp', caption: 'Little Pass Bridge', year: '1965' },
+];
+
+let activeTab = 'coffee';
+
+function makeStars(rating) {
+  const full = Math.floor(rating);
+  const half = rating % 1 >= 0.3;
+  const empty = 5 - full - (half ? 1 : 0);
+  return `<span class="card__stars">${'★'.repeat(full)}${half ? '½' : ''}<span class="card__stars-dim">${'★'.repeat(empty)}</span></span>
+          <span class="card__rating-num mono">${rating}</span>`;
+}
+
+function makeArchivalPhoto(src, caption, year, aspect = '16/10') {
+  return `<div class="archival-photo">
+    <div class="archival-photo__frame" style="aspect-ratio:${aspect}">
+      <img class="archival-photo__img" src="${src}" alt="${caption}" onload="this.classList.add('loaded')">
+      <div class="archival-photo__grain"></div>
+      <div class="archival-photo__vignette"></div>
+      <div class="archival-photo__skeleton"></div>
+    </div>
+    <div class="archival-photo__caption">
+      <span class="archival-photo__caption-text mono">${caption}</span>
+      <span class="archival-photo__caption-year mono">${year}</span>
+    </div>
+  </div>`;
+}
+
+function makeCard(place, index, accent) {
+  const num = String(index + 1).padStart(2, '0');
+  return `<div class="card" data-index="${index}" style="transition-delay:${index * 0.08}s">
+    <div class="card__accent" style="background:${accent}"></div>
+    <div class="card__body">
+      <div class="card__top">
+        <div style="flex:1">
+          <div class="card__meta">
+            <span class="card__tag mono" style="background:${accent}">${place.tag}</span>
+            <span class="card__price mono">${place.price}</span>
+          </div>
+          <h3 class="card__name serif">${place.name}</h3>
+        </div>
+        <div class="card__number mono" style="color:${accent}">${num}</div>
+      </div>
+      <p class="card__address mono">${place.address}</p>
+      <div class="card__rating">${makeStars(place.rating)}<span class="card__reviews mono">(${place.reviews})</span></div>
+      <p class="card__vibe body-serif">${place.vibe}</p>
+      <div class="card__expand">
+        <div class="card__expand-inner">
+          <div class="card__tip" style="background:${accent}0D;border:1px solid ${accent}22">
+            <div class="card__tip-label mono" style="color:${accent}">INSIDER TIP</div>
+            <p class="card__tip-text body-serif">${place.tip}</p>
+          </div>
+          <div class="card__hours">
+            <span class="card__hours-icon">⏰</span>
+            <span class="card__hours-text mono">${place.hours}</span>
+          </div>
+        </div>
+      </div>
+      <div class="card__toggle mono">TAP FOR MORE ▼</div>
+    </div>
+  </div>`;
+}
+
+function render(tab) {
+  const d = DATA[tab];
+
+  // Photo
+  document.getElementById('section-photo').innerHTML = makeArchivalPhoto(d.photo.src, d.photo.caption, d.photo.year);
+
+  // Header
+  document.getElementById('section-header').innerHTML = `
+    <div class="section-header__top">
+      <span class="section-header__icon">${d.icon}</span>
+      <h2 class="section-header__title serif">${d.title}</h2>
+    </div>
+    <p class="section-header__desc body-serif">${d.desc}</p>`;
+
+  // Cards
+  const cardsEl = document.getElementById('cards');
+  cardsEl.innerHTML = d.places.map((p, i) => makeCard(p, i, d.accent)).join('');
+
+  // Animate in
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      cardsEl.querySelectorAll('.card').forEach(c => c.classList.add('visible'));
+    });
+  });
+
+  // Card click handlers
+  cardsEl.querySelectorAll('.card').forEach(card => {
+    card.addEventListener('click', () => {
+      const isExpanded = card.classList.toggle('expanded');
+      card.querySelector('.card__toggle').textContent = isExpanded ? 'COLLAPSE ▲' : 'TAP FOR MORE ▼';
+    });
+  });
+
+  // Update tabs
+  document.querySelectorAll('.tabs__btn').forEach(btn => {
+    const key = btn.dataset.tab;
+    const isActive = key === tab;
+    btn.classList.toggle('active', isActive);
+    btn.style.color = isActive ? DATA[key].accent : '';
+    btn.style.borderBottomColor = isActive ? DATA[key].accent : 'transparent';
+    btn.style.fontWeight = isActive ? '600' : '400';
+  });
+}
+
+// Tab clicks
+document.querySelectorAll('.tabs__btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const tab = btn.dataset.tab;
+    if (tab === activeTab) return;
+    activeTab = tab;
+    // Reset cards for animation
+    document.querySelectorAll('.card').forEach(c => c.classList.remove('visible'));
+    setTimeout(() => render(tab), 150);
+  });
+});
+
+// Gallery
+document.getElementById('gallery-grid').innerHTML = GALLERY.map(p =>
+  `<div class="gallery__item">${makeArchivalPhoto(p.src, p.caption, p.year, '4/3')}</div>`
+).join('');
+
+// Initial render
+render('coffee');
+</script>
+
+
+</body></html>
